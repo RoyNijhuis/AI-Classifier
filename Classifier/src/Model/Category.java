@@ -21,6 +21,11 @@ public class Category {
         this.words = words;
     }
 
+    public String getName()
+    {
+        return name;
+    }
+
     public void updateWord(String name, int amount)
     {
         if(words.containsKey(name))
