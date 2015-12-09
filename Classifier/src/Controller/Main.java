@@ -28,6 +28,8 @@ public class Main {
 			categories.add(cat);
 		}
 		categories = Trainer.train(categories);
+
+		int numberOfOccurrences = ui.askForMinimumNumberOfOccurrences();
 		
 		while(true)
 		{
@@ -45,7 +47,7 @@ public class Main {
 						e.printStackTrace();
 					}
 
-					Category result = Applier.classify(categories, words, 1);
+					Category result = Applier.classify(categories, words, numberOfOccurrences);
 					
 					System.out.println(f.getName()+" is probably of class: " + result.getName());
 	            }
