@@ -9,6 +9,7 @@ import java.util.Map;
 public class Category {
     private String name;
     private Map<String, Integer> words;
+    private Map<String, Float> probability;
 
     public Category(String name)
     {
@@ -50,4 +51,12 @@ public class Category {
     {
         return words;
     }
+
+	public Map<String, Float> getProbability() {
+		return probability;
+	}
+
+	public void setProbability(Map<String, Float> probability) {
+		this.probability = probability;
+	}
 }

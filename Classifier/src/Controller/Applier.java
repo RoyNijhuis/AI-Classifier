@@ -20,7 +20,7 @@ public class Applier {
         boolean first = true;
     	for(Category c: cat){
     		float catResult = 0;
-    		Map<String,Integer> words = c.getWords();
+    		Map<String,Float> words = c.getProbability();
     		for(Entry<String,Integer> entry: toClassify.entrySet()){
 				if(entry.getValue()>=minimumNumberOfOccurrences)
 				{
@@ -36,7 +36,6 @@ public class Applier {
         			biggest = catResult;
         		}
         	}
-        	System.out.println(c.getName()+ ": "+ catResult);
         }
         return results.get(biggest);
     }
