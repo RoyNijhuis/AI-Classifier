@@ -21,7 +21,28 @@ public class Classifier {
     {
         categories.add(new Category("M"));
         categories.add(new Category("F"));
-
+        
+        //read file and sort words
+        try {
+			Map<String, Integer> p1 = Reader.readFromFolder("C:\\Users\\Roy\\Downloads\\blogs\\blogs\\M");
+			categories.get(0).mergeMaps(p1);
+			Map<String, Integer> p2 = Reader.readFromFolder("C:\\Users\\Roy\\Downloads\\blogs\\blogs\\F");
+			categories.get(1).mergeMaps(p2);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        //train with words
+        
+        //classify new documents
+        try {
+			Map<String, Integer> toTestt = Reader.readFromFile("C:\\Users\\Roy\\Downloads\\blogs\\blogs\\test.txt");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        
+        
         Trainer trainer = new Trainer();
         try{
             Map<String, Integer> trainedMap = trainer.trainFromFolder("C:\\Users\\Roy\\Downloads\\blogs\\blogs\\M");
@@ -48,7 +69,7 @@ public class Classifier {
         }
         catch(IOException e)
         {
-
+        	System.out.println("OOPS");	
         }
     }
 }

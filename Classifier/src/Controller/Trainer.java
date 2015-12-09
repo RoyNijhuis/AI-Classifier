@@ -1,7 +1,6 @@
 package Controller;
 
 import Model.Category;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,47 +14,63 @@ import java.util.Map;
  */
 public class Trainer {
 
-    public Map<String, Integer> trainFromFolder(String folderPath) throws IOException
+	public Map<Category, Map<String,Integer>> train(List<Category> cat)
     {
-        File folder = new File(folderPath);
-        if(folder.isDirectory())
+        int totalWordsInFile = totalWordsInFile(toClassify);
+        Map<String, Integer> vocab = new HashMap<>();
+        for(Category category: cat)
         {
-            File[] files = folder.listFiles();
-            Map<String, Integer> allData = new HashMap<>();
-            for(File f: files)
+            vocab.putAll(category.getWords());
+        }
+        // for every category
+        for(Category category: cat){
+        	
+        
+        	//for every word
+        	category.getWords();
+        	for()
+        	
+        	
+        }
+        
+        
+        
+        int totalWordsInVocabulary = vocab.size();
+
+        List<Float> chances = new ArrayList<>();
+        for(int i=0; i<cat.size();i++)
+        {
+            Category c = cat.get(i);
+            float chance = 0;
+            for(Map.Entry<String, Integer> entry: toClassify.entrySet())
             {
-                Map<String, Integer> result = trainFromFolder(f.getAbsolutePath());
-                result.forEach((k, v) -> allData.merge(k, v, (v1, v2) -> v1 + v2));
+                int value = c.getWords().get(entry.getKey())==null?0:c.getWords().get(entry.getKey());
+                chance+=Math.log((((float)value+1f)/((float)totalWordsInFile+(float)totalWordsInVocabulary)))/Math.log(2);
             }
-            return allData;
+            chances.add(chance);
         }
-        else {
-            return trainFromFile(folderPath);
+
+        System.out.println("Chance for M: " + chances.get(0));
+        System.out.println("Chance for F: " + chances.get(1));
+
+        int indexCat = 0;
+        for(int i=0; i<chances.size();i++)
+        {
+            if(chances.get(i)> chances.get(indexCat))
+            {
+                indexCat = i;
+            }
         }
+
+        return cat.get(indexCat);
     }
 
-    public Map<String, Integer> trainFromFile(String path) throws IOException
+    private int totalWordsInFile(Map<String, Integer> words)
     {
-        String file = Reader.readFile(path);
-        file = file.replaceAll("[^a-zA-Z]", " ");
-        file = file.toLowerCase();
-        String[] array = file.split(" ");
-
-        //Remove empty entries and create map
-        Map<String, Integer> result = new HashMap<>();
-        for(String s: array)
+        int result = 0;
+        for(Map.Entry<String, Integer> entry: words.entrySet())
         {
-            if(!s.isEmpty())
-            {
-                if(result.containsKey(s))
-                {
-                    result.put(s, result.get(s) + 1);
-                }
-                else
-                {
-                    result.put(s, 1);
-                }
-            }
+            result+=entry.getValue();
         }
 
         return result;
