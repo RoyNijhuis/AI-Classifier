@@ -9,16 +9,15 @@ import java.util.Scanner;
  */
 public class TUI implements UI {
 
-    public String askForTrainFolder()
+    public String askForTrainFolder(String category)
     {
         String path = null;
         boolean done = false;
         while(!done)
         {
-            System.out.println("Please enter the path to the directory in which your training files are:");
+            System.out.println("Please enter the path to the directory in which your training files are with class '" + category + "'" + ":");
             Scanner user_input = new Scanner( System.in );
             path = user_input.nextLine();
-            System.out.println(path);
 
             File f = new File(path);
             try {
@@ -42,7 +41,6 @@ public class TUI implements UI {
             System.out.println("Please enter the path to the directory in which the files are that you would like to classify: ");
             Scanner user_input = new Scanner( System.in );
             path = user_input.nextLine();
-            System.out.println(path);
 
             File f = new File(path);
             try {
@@ -81,6 +79,17 @@ public class TUI implements UI {
     {
         System.out.println("If you only want to use certain words for classification, please enter them seperated by a comma(,).");
         System.out.println("If you want to use all words in the training set leave the line empty.");
+        Scanner user_input = new Scanner(System.in);
+        String input = user_input.nextLine();
+
+        String[] result = input.split(",");
+
+        return result;
+    }
+
+    public String[] askClasses()
+    {
+        System.out.println("Which classes are there in the documents? Seperate each class with a comma(,).");
         Scanner user_input = new Scanner(System.in);
         String input = user_input.nextLine();
 
