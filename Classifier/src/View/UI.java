@@ -5,7 +5,7 @@ package View;
  */
 public interface UI {
     public String askForTrainFolder(String category);
-    public String askForApplyFolder();
+    public String askForApplyFile();
     public int askForMinimumNumberOfOccurrences();
     public String[] askForWordsOnly();
     public String[] askClasses();

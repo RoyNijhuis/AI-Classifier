@@ -32,13 +32,13 @@ public class TUI implements UI {
         return path;
     }
 
-    public String askForApplyFolder()
+    public String askForApplyFile()
     {
         String path = null;
         boolean done = false;
         while(!done)
         {
-            System.out.println("Please enter the path to the directory in which the files are that you would like to classify: ");
+            System.out.println("Please enter the path to the file that you would like to classify: ");
             Scanner user_input = new Scanner( System.in );
             path = user_input.nextLine();
 
