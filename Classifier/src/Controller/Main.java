@@ -14,13 +14,20 @@ public class Main {
 		UI ui = new TUI();
 		String categorieNames[] = ui.askClasses();
 		String trainPaths[] = new String[categorieNames.length];
-		Category categories[] = new Category[categorieNames.length];
-		for(int i=0; i<categories.length; i++)
-		{
-			categories[i] = new Category(categorieNames[i]);
-			trainPaths[i] = ui.askForTrainFolder(categorieNames[i]);
-		}
+		List<Category> categories = new ArrayList<>();
 		
+		for(int i=0; i<categorieNames.length; i++)
+		{
+			Category cat = new Category(categorieNames[i]);
+			String trainPath = ui.askForTrainFolder(categorieNames[i]);
+			try {
+				cat.setWords(Reader.readFromFolder(trainPath));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		Map<Category, Map<String,Double>> map = Trainer.train(categories);
 
 		while(true)
 		{
@@ -38,7 +45,7 @@ public class Main {
 						e.printStackTrace();
 					}
 
-					Category result = Applier.classify(new ArrayList<Category>(Arrays.asList(categories)), words);
+					Category result = Applier.classify(categories, words, 5);
 					System.out.println("This file is probably of class: " + result.getName());
 	            }
 	        } else {
@@ -49,7 +56,7 @@ public class Main {
 					e.printStackTrace();
 				}
 
-				Category result = Applier.classify(new ArrayList<Category>(Arrays.asList(categories)), words);
+				Category result = Applier.classify(categories, words, 5);
 				System.out.println("This file is probably of class: " + result.getName());
 	        }
 			/*Map<String, Integer> words = null;
