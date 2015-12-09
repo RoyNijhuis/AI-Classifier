@@ -13,7 +13,7 @@ import java.util.Map.Entry;
  */
 public class Applier {
 
-    public static Category classify(List<Category> cat, Map<String, Integer> toClassify)
+    public static Category classify(List<Category> cat, Map<String, Integer> toClassify, int minimumNumberOfOccurrences)
     {
         Map<Float, Category> results = new HashMap<>();
         float biggest = 0;
@@ -22,7 +22,10 @@ public class Applier {
     		float catResult = 0;
     		Map<String,Integer> words = c.getWords();
     		for(Entry<String,Integer> entry: toClassify.entrySet()){
-    			catResult += entry.getValue()*(float)(words.get(entry.getKey())==null?0:words.get(entry.getKey()));
+				if(entry.getValue()>=minimumNumberOfOccurrences)
+				{
+					catResult += entry.getValue()*(float)(words.get(entry.getKey())==null?0:words.get(entry.getKey()));
+				}
     		}
         	results.put(catResult,c);
         	if(first){
