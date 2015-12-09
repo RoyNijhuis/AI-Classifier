@@ -33,7 +33,7 @@ public class Classifier {
 			e1.printStackTrace();
 		}
         //train with words
-        
+        Map<Category, Map<String,Double>> trained = Trainer.train(categories);
         //classify new documents
         try {
 			Map<String, Integer> toTestt = Reader.readFromFile("C:\\Users\\Roy\\Downloads\\blogs\\blogs\\test.txt");
@@ -42,8 +42,12 @@ public class Classifier {
 			e1.printStackTrace();
 		}
         
+        //Classify now
         
-        Trainer trainer = new Trainer();
+        
+        
+        
+        /*Trainer trainer = new Trainer();
         try{
             Map<String, Integer> trainedMap = trainer.trainFromFolder("C:\\Users\\Roy\\Downloads\\blogs\\blogs\\M");
             categories.get(0).mergeMaps(trainedMap);
@@ -65,11 +69,11 @@ public class Classifier {
                     System.out.println("This data is most likely: " + winner.getName());
                 }
             }
-            */
+            /
         }
         catch(IOException e)
         {
         	System.out.println("OOPS");	
-        }
+        }*/
     }
 }
