@@ -35,15 +35,16 @@ public class Classifier {
         //train with words
         Map<Category, Map<String,Double>> trained = Trainer.train(categories);
         //classify new documents
+        Map<String, Integer> toTestt = new HashMap<>();
         try {
-			Map<String, Integer> toTestt = Reader.readFromFile("C:\\Users\\Roy\\Downloads\\blogs\\blogs\\test.txt");
+			toTestt = Reader.readFromFile("C:\\Users\\Roy\\Downloads\\blogs\\blogs\\test.txt");
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
         
         //Classify now
-        
+        Category result = Applier.classify(categories, toTestt);
         
         
         
