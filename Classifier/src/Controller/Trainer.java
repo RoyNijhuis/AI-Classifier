@@ -25,11 +25,8 @@ public class Trainer {
             vocab.putAll(category.getWords());
         }
         
-        int differentWords = 0;
-        for(Entry<String, Integer> entry: vocab.entrySet()){
-        	differentWords++;
-        }
-        
+        int differentWords = vocab.size();
+                
         // for every category
         for(Category i: cat){
         	int amountOfWords = 0;
