@@ -40,6 +40,7 @@ public class Trainer {
         	for(Entry<String, Integer> entry: map.entrySet()){
         		int value = map.get(entry.getKey())==null?0:map.get(entry.getKey());
                 double chance = Math.log((((float)value+1f)/((float)amountOfWords+(float)differentWords)))/Math.log(2);
+                System.out.println("c" + chance);
                 resultCat.put(entry.getKey(), chance);
         	}
         	result.put(i, resultCat);

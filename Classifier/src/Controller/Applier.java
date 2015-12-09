@@ -22,7 +22,7 @@ public class Applier {
     		float catResult = 0;
     		Map<String,Integer> words = c.getWords();
     		for(Entry<String,Integer> entry: toClassify.entrySet()){
-    			catResult += entry.getValue()*((float)words.get(entry.getKey()));
+    			catResult += entry.getValue()*(float)(words.get(entry.getKey())==null?0:words.get(entry.getKey()));
     		}
         	results.put(catResult,c);
         	if(first){
@@ -33,6 +33,7 @@ public class Applier {
         			biggest = catResult;
         		}
         	}
+        	System.out.println(c.getName()+ ": "+ catResult);
         }
         return results.get(biggest);
     }
