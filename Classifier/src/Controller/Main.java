@@ -21,15 +21,16 @@ public class Main {
 			String trainPath = ui.askForTrainFolder(categorieNames[i]);
 			try {
 				cat.setWords(Reader.readFromFolder(trainPath));
+				cat.setDocs(Reader.readAmountFiles(trainPath));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			categories.add(cat);
 		}
-		categories = Trainer.train(categories);
-
 		int numberOfOccurrences = ui.askForMinimumNumberOfOccurrences();
+		categories = Trainer.train(categories, numberOfOccurrences);
+
 		
 		while(true)
 		{
@@ -47,7 +48,7 @@ public class Main {
 						e.printStackTrace();
 					}
 
-					Category result = Applier.classify(categories, words, numberOfOccurrences);
+					Category result = Applier.classify(categories, words);
 					
 					System.out.println(f.getName()+" is probably of class: " + result.getName());
 	            }
@@ -59,7 +60,7 @@ public class Main {
 					e.printStackTrace();
 				}
 
-				Category result = Applier.classify(categories, words, 1);
+				Category result = Applier.classify(categories, words);
 				System.out.println("This file is probably of class: " + result.getName());
 	        }
 		}

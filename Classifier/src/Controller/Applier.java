@@ -13,20 +13,19 @@ import java.util.Map.Entry;
  */
 public class Applier {
 
-    public static Category classify(List<Category> cat, Map<String, Integer> toClassify, int minimumNumberOfOccurrences)
+    public static Category classify(List<Category> cat, Map<String, Integer> toClassify)
     {
         Map<Float, Category> results = new HashMap<>();
         float biggest = 0;
         boolean first = true;
     	for(Category c: cat){
-    		float catResult = 0;
+    		float catResult = (float)(Math.log(c.getPrior())/Math.log(2));
     		Map<String,Float> words = c.getProbability();
     		for(Entry<String,Integer> entry: toClassify.entrySet()){
-				if(entry.getValue()>=minimumNumberOfOccurrences)
-				{
-					catResult += entry.getValue()*(float)(words.get(entry.getKey())==null?0:words.get(entry.getKey()));
-				}
+				catResult += (float)entry.getValue()*(float)(words.get(entry.getKey())==null?0:(float)words.get(entry.getKey()));
+					//System.out.println((float)entry.getValue()*(float)(words.get(entry.getKey())==null?0:(float)words.get(entry.getKey())));
     		}
+    		//System.out.println(catResult + " " + c.getName() + " " + c.getPrior());
         	results.put(catResult,c);
         	if(first){
         		biggest = catResult;

@@ -11,6 +11,7 @@ public class Category {
     private Map<String, Integer> words;
     private Map<String, Float> probability;
     private float prior;
+    private int docs;
 
     public Category(String name)
     {
@@ -69,5 +70,13 @@ public class Category {
 
 	public void setProbability(Map<String, Float> probability) {
 		this.probability = probability;
+	}
+
+	public int getDocs() {
+		return docs;
+	}
+
+	public void setDocs(int docs) {
+		this.docs = docs;
 	}
 }

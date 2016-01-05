@@ -67,4 +67,22 @@ public class Reader {
 
         return result;
     }
+    
+    public static int readAmountFiles(String folderPath) throws IOException
+    {
+    	int result = 0;
+        File folder = new File(folderPath);
+        if(folder.isDirectory())
+        {
+            File[] files = folder.listFiles();
+            for(File f: files)
+            {
+            	result += readAmountFiles(f.getAbsolutePath());
+            }
+            return result;
+        }
+        else {
+            return 1;
+        }
+    }
 }
