@@ -36,7 +36,9 @@ public class Trainer {
         	
         	for(Entry<String, Integer> entry: vocab.entrySet()){
         		int value = map.get(entry.getKey())==null?0:map.get(entry.getKey());
-                float chance = (float) (Math.log((((float)value+SMOOTHING)/((float)amountOfWords+SMOOTHING*(float)differentWords)))/Math.log(2));
+        		float top = (float)(value+SMOOTHING);
+        		float bot = (float)(amountOfWords+SMOOTHING*differentWords);
+                float chance = (float)(Math.log(top/bot)/Math.log(2));
                resultCat.put(entry.getKey(), chance);
         	}
         	i.setProbability(resultCat);
