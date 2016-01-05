@@ -10,6 +10,7 @@ public class Category {
     private String name;
     private Map<String, Integer> words;
     private Map<String, Float> probability;
+    private float prior;
 
     public Category(String name)
     {
@@ -20,6 +21,16 @@ public class Category {
     public void setWords(Map<String, Integer> words)
     {
         this.words = words;
+    }
+
+    public void setPrior(float prior)
+    {
+        this.prior = prior;
+    }
+
+    public float getPrior()
+    {
+        return prior;
     }
 
     public String getName()
