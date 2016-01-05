@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 /**
- * Created by Roy & Edwin on 3-12-2015.
+ * Created by Roy on 3-12-2015.
  */
 public class Trainer {
 	private static final float SMOOTHING = 1;

@@ -14,7 +14,8 @@ import java.util.StringTokenizer;
  * Created by Roy on 3-12-2015.
  */
 public class Reader {
-
+	
+	//Read a file and return one big string
     public static String readFile(String path) throws IOException
     {
         Charset encoding = Charset.defaultCharset();
@@ -22,6 +23,9 @@ public class Reader {
         return new String(encoded, encoding);
     }
     
+    //recursive function checking if path is a directory or a file
+    //if it is a directory call itself for every file/directory in this directory and return a map containing all the obtained maps 
+    //if it is a file return the map obtained from readFromFile(Path)
     public static Map<String, Integer> readFromFolder(String folderPath) throws IOException
     {
         File folder = new File(folderPath);
@@ -41,6 +45,9 @@ public class Reader {
         }
     }
     
+    //get the string of a file with readFile(path)
+    //split the string, cast to lowercase and remove anything that is not a letter
+    //return a map of all remaining words and how often each word occurs
     public static Map<String, Integer> readFromFile(String path) throws IOException
     {
         String file = Reader.readFile(path);
@@ -68,6 +75,9 @@ public class Reader {
         return result;
     }
     
+    //recursive function counting how many files there are in total 
+    //if it is a directory call itself for every file/directory in this directory and return the result of all added together
+    //if it is a file return 1
     public static int readAmountFiles(String folderPath) throws IOException
     {
     	int result = 0;
