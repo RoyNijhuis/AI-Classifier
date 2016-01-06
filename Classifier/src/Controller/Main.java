@@ -25,7 +25,7 @@ public class Main {
 				cat.setDocs(Reader.readAmountFiles(trainPath));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				i-=1;
 			}
 			categories.add(cat);
 		}
