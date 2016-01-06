@@ -122,7 +122,24 @@ public class TUI implements UI {
 
 	
 	public boolean askLearn() {
-		
-		return false;
+		boolean result = false;
+        boolean done = false;
+        while(!done)
+        {
+            System.out.println("Do you want the classifier to learn from the new documents?(y/n)");
+            Scanner user_input = new Scanner( System.in );
+            String answer = user_input.nextLine();
+
+            if(answer.equals("y")){
+            	result = true;
+            	done = true;
+            } else if(answer.equals("n")){
+            	done = true;
+            } else {
+            	System.out.println("Please answer with \'y\' or \'n\'");
+            }
+        }
+
+		return result;
 	}
 }

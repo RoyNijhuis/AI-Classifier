@@ -36,6 +36,7 @@ public class Main {
 		{
 			String filePath = ui.askForApplyFile();
 			File folder = new File(filePath);
+			Boolean learn = ui.askLearn();
 	        if(folder.isDirectory())
 	        {
 	            File[] files = folder.listFiles();
@@ -50,21 +51,22 @@ public class Main {
 
 					Category result = Applier.classify(categories, words);
 					
-					System.out.println(f.getName()+" is probably of class: " + result.getName());
-					
-					String cate = ui.askCorrectClass(result.getName());
-					Category update= null;
-					if(cate!=null){
-						for(Category c: categories){
-							if(c.getName().equals(cate)){
-								update = c;
-								System.out.println("gevonden");
+					ui.outputDeterminedCategory((String)(f.getName()+" is probably of class: " + result.getName()));
+					if(learn){
+						String cate = ui.askCorrectClass(result.getName());
+						Category update= null;
+						if(cate!=null){
+							for(Category c: categories){
+								if(c.getName().equals(cate)){
+									update = c;
+									System.out.println("gevonden");
+								}
 							}
-						}
-						if(update != null){
-							update.addDoc(1);
-							update.mergeMaps(words);
-							Trainer.train(categories, numberOfOccurrences);
+							if(update != null){
+								update.addDoc(1);
+								update.mergeMaps(words);
+								Trainer.train(categories, numberOfOccurrences);
+							}
 						}
 					}
 	            }
