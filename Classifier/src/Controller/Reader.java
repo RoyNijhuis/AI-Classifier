@@ -6,9 +6,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.StringTokenizer;
 
 /**
  * Created by Roy on 3-12-2015.
@@ -75,7 +73,7 @@ public class Reader {
         return result;
     }
     
-    //recursive function counting how many files there are in total 
+    //recursive function counting how many files there are in the directory 
     //if it is a directory call itself for every file/directory in this directory and return the result of all added together
     //if it is a file return 1
     public static int readAmountFiles(String folderPath) throws IOException

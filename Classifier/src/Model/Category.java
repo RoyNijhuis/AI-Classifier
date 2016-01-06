@@ -79,4 +79,8 @@ public class Category {
 	public void setDocs(int docs) {
 		this.docs = docs;
 	}
+	
+	public void addDoc(int number){
+		this.docs += number;
+	}
 }

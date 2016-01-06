@@ -51,6 +51,17 @@ public class Main {
 					Category result = Applier.classify(categories, words);
 					
 					System.out.println(f.getName()+" is probably of class: " + result.getName());
+					Category update;
+					for(Category c: categories){
+						if(c.getName() == null){
+							update = c;
+						}
+					}
+					if(update != null){
+						update.addDoc(1);
+						update.mergeMaps(words);
+						Trainer.train(categories, numberOfOccurrences);
+					}
 	            }
 	        } else {
 	        	Map<String, Integer> words = null;
