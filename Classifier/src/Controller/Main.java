@@ -46,9 +46,11 @@ public class Main {
 		//while loop to classify documents
 		while(true)
 		{
-			
+			//ask user for path to classify
 			String filePath = ui.askForApplyFile();
 			File folder = new File(filePath);
+			
+			//ask the user if he wants the classifier to learn from the new document
 			Boolean learn = ui.askLearn();
 	        if(folder.isDirectory())
 	        {
@@ -57,15 +59,20 @@ public class Main {
 	            	filePath = files[i].getAbsolutePath();
 	            	Map<String, Integer> words = null;
 					try {
+						//get all the words from the file
 						words = Reader.readFromFile(filePath);
 					} catch (IOException e) {
 						i-=1;
 					}
-
+					//classify the document
 					Category result = Applier.classify(categories, words);
 					
+					//output to the user the answer
 					ui.outputDeterminedCategory(files[i].getName(), result.getName());
+					
+					// if the user wants to learn
 					if(learn){
+						//ask the user what the categorie should be
 						String cate = ui.askCorrectClass(result.getName(), categories);
 						Category update= null;
 						if(cate!=null){
@@ -78,6 +85,7 @@ public class Main {
 							if(update != null){
 								update.addDoc(1);
 								update.mergeMaps(words);
+								//train the classifier with the new data
 								Trainer.train(categories, numberOfOccurrences,maxOccurrences);
 							}
 						}
@@ -86,15 +94,18 @@ public class Main {
 	        } else {
 	        	Map<String, Integer> words = null;
 				try {
+					//get all the words from the file
 					words = Reader.readFromFile(filePath);
 				} catch (IOException e) {
 					
 				}
-
+				//classify the document
 				Category result = Applier.classify(categories, words);
 				
+				//output to the user the answer
 				ui.outputDeterminedCategory(folder.getName(), result.getName());
 				if(learn){
+					// if the user wants to learn
 					String cate = ui.askCorrectClass(result.getName(), categories);
 					Category update= null;
 					if(cate!=null){
@@ -107,6 +118,7 @@ public class Main {
 						if(update != null){
 							update.addDoc(1);
 							update.mergeMaps(words);
+							//train the classifier with the new data
 							Trainer.train(categories, numberOfOccurrences,maxOccurrences);
 						}
 					}
