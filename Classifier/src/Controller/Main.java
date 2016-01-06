@@ -51,7 +51,7 @@ public class Main {
 
 					Category result = Applier.classify(categories, words);
 					
-					ui.outputDeterminedCategory((String)(f.getName()+" is probably of class: " + result.getName()));
+					ui.outputDeterminedCategory(f.getName(), result.getName());
 					if(learn){
 						String cate = ui.askCorrectClass(result.getName());
 						Category update= null;

@@ -8,7 +8,8 @@ import java.util.Scanner;
  * Created by Roy on 9-12-2015.
  */
 public class TUI implements UI {
-
+	
+	//Asks the user for the folder where to train category from, then returns the path
     public String askForTrainFolder(String category)
     {
         String path = null;
@@ -31,12 +32,14 @@ public class TUI implements UI {
 
         return path;
     }
-
-    public void outputDeterminedCategory(String category)
+    
+    //outputs the category calculated for document
+    public void outputDeterminedCategory(String document, String category)
     {
-        System.out.println("This document is probably of class '" + category + "'.");
+        System.out.println(document+ " is probably of class '" + category + "'.");
     }
-
+    
+    //ask the user for the correct category
     public String askCorrectClass(String category)
     {
         System.out.println("Is this the correct class? (y/n)");
@@ -53,14 +56,15 @@ public class TUI implements UI {
 
         return correctClass;
     }
-
+    
+    //Ask the user for the path to the 
     public String askForApplyFile()
     {
         String path = null;
         boolean done = false;
         while(!done)
         {
-            System.out.println("Please enter the path to the file that you would like to classify: ");
+            System.out.println("Please enter the path to the file/directory that you would like to classify: ");
             Scanner user_input = new Scanner( System.in );
             path = user_input.nextLine();
 

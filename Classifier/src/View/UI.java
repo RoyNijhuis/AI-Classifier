@@ -9,7 +9,7 @@ public interface UI {
     public int askForMinimumNumberOfOccurrences();
     public String[] askForWordsOnly();
     public String[] askClasses();
-    public void outputDeterminedCategory(String category);
+    public void outputDeterminedCategory(String document, String category);
     public String askCorrectClass(String category);
     public boolean askLearn();
 }
