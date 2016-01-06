@@ -59,7 +59,7 @@ public class Main {
 							for(Category c: categories){
 								if(c.getName().equals(cate)){
 									update = c;
-									System.out.println("gevonden");
+									
 								}
 							}
 							if(update != null){
