@@ -57,7 +57,7 @@ public class TUI implements UI {
         return correctClass;
     }
     
-    //Ask the user for the path to the 
+    //Ask the user for the path to the file that should be classified
     public String askForApplyFile()
     {
         String path = null;
@@ -87,6 +87,26 @@ public class TUI implements UI {
         boolean done = false;
         while(!done) {
             System.out.println("Please enter the minimum number of times a word should occur, before adding it to the vocabulary: ");
+            Scanner user_input = new Scanner(System.in);
+            String input = user_input.nextLine();
+
+            try {
+                number = Integer.valueOf(input);
+                done = true;
+            } catch (Exception e) {
+                System.out.println("Not a number...");
+            }
+        }
+
+        return number;
+    }
+
+    public int askForMaximumNumberOfOccurrences()
+    {
+        int number = -1;
+        boolean done = false;
+        while(!done) {
+            System.out.println("Please enter the maximum number of times a word can occur.");
             Scanner user_input = new Scanner(System.in);
             String input = user_input.nextLine();
 
