@@ -31,11 +31,13 @@ public class Trainer {
 			
 			//the new word list
 			Map<String,Integer> newWords = new HashMap<String, Integer>();
-			maxnumber = maxnumber==-1?Integer.MAX_VALUE:maxnumber;
+			maxnumber = (maxnumber==-1?Integer.MAX_VALUE:maxnumber);
 			//select words
 			for(Entry<String,Integer> i: words.entrySet()){
 				//filter
-				if(i.getValue()>= minnumber && i.getValue()<= maxnumber && !stopwords.contains(i.getValue())){
+				
+				if(i.getValue()> minnumber && i.getValue()<= maxnumber && !stopwords.contains(i.getValue())){
+					System.out.println(maxnumber);
 					newWords.put(i.getKey(), i.getValue());
 				}
 			}
