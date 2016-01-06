@@ -13,7 +13,6 @@ public class Main {
 	public static void main(String[] args) {
 		//create user interface
 		UI ui = new TUI();
-		ui.show();
 		
 		//list all categories
 		String categorieNames[] = ui.askClasses();
