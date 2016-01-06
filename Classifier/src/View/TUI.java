@@ -32,6 +32,28 @@ public class TUI implements UI {
         return path;
     }
 
+    public void outputDeterminedCategory(String category)
+    {
+        System.out.println("This document is probably of class '" + category + "'.");
+    }
+
+    public String askCorrectClass(String category)
+    {
+        System.out.println("Is this the correct class? (y/n)");
+        Scanner user_input = new Scanner( System.in );
+        String correct = user_input.nextLine();
+        String correctClass = null;
+
+        if(!correct.equals("y") && !correct.equals("yes"))
+        {
+            //Class is not correct
+            System.out.println("What is the correct class?");
+            correctClass = user_input.nextLine();
+        }
+
+        return correctClass;
+    }
+
     public String askForApplyFile()
     {
         String path = null;
