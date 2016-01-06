@@ -11,4 +11,5 @@ public interface UI {
     public String[] askClasses();
     public void outputDeterminedCategory(String category);
     public String askCorrectClass(String category);
+    public boolean askLearn();
 }

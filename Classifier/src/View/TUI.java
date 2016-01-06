@@ -42,7 +42,7 @@ public class TUI implements UI {
         System.out.println("Is this the correct class? (y/n)");
         Scanner user_input = new Scanner( System.in );
         String correct = user_input.nextLine();
-        String correctClass = null;
+        String correctClass = category;
 
         if(!correct.equals("y") && !correct.equals("yes"))
         {
@@ -119,4 +119,10 @@ public class TUI implements UI {
 
         return result;
     }
+
+	
+	public boolean askLearn() {
+		
+		return false;
+	}
 }
