@@ -106,13 +106,17 @@ public class TUI implements UI {
         int number = -1;
         boolean done = false;
         while(!done) {
-            System.out.println("Please enter the maximum number of times a word can occur.");
+            System.out.println("Please enter the maximum number of times a word can occur. If you do not want a maximum, enter -1");
             Scanner user_input = new Scanner(System.in);
             String input = user_input.nextLine();
 
             try {
                 number = Integer.valueOf(input);
                 done = true;
+                if(number < 0)
+                {
+                    number = -1;
+                }
             } catch (Exception e) {
                 System.out.println("Not a number...");
             }
