@@ -12,6 +12,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		UI ui = new TUI();
+		ui.show();
 		String categorieNames[] = ui.askClasses();
 		List<Category> categories = new ArrayList<>();
 		
