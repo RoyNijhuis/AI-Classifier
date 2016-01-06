@@ -7,6 +7,7 @@ public interface UI {
     public String askForTrainFolder(String category);
     public String askForApplyFile();
     public int askForMinimumNumberOfOccurrences();
+    public int askForMaximumNumberOfOccurrences();
     public String[] askForWordsOnly();
     public String[] askClasses();
     public void outputDeterminedCategory(String document, String category);

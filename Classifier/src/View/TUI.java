@@ -100,7 +100,7 @@ public class TUI implements UI {
 
         return number;
     }
-
+    
     public int askForMaximumNumberOfOccurrences()
     {
         int number = -1;

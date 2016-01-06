@@ -16,7 +16,7 @@ public class Trainer {
 	private static final float SMOOTHING = 1;
 	
 	//Train using the known documents and categories
-	public static List<Category> train(List<Category> cat, int minnumber)
+	public static List<Category> train(List<Category> cat, int minnumber, int maxnumber)
     {
         //int totalWordsInFile = totalWordsInFile(toClassify);
 		List<Category> cate = cat;
@@ -31,11 +31,11 @@ public class Trainer {
 			
 			//the new word list
 			Map<String,Integer> newWords = new HashMap<String, Integer>();
-			
+			maxnumber = maxnumber==-1?Integer.MAX_VALUE:maxnumber;
 			//select words
 			for(Entry<String,Integer> i: words.entrySet()){
 				//filter
-				if(i.getValue()>minnumber && !stopwords.contains(i.getValue())){
+				if(i.getValue()>= minnumber && i.getValue()<= maxnumber && !stopwords.contains(i.getValue())){
 					newWords.put(i.getKey(), i.getValue());
 				}
 			}

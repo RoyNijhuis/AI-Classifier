@@ -13,7 +13,6 @@ public class Main {
 	public static void main(String[] args) {
 		UI ui = new TUI();
 		ui.show();
-		ui.askForMinimumNumberOfOccurrences();
 		String categorieNames[] = ui.askClasses();
 		List<Category> categories = new ArrayList<>();
 		
@@ -31,7 +30,8 @@ public class Main {
 			categories.add(cat);
 		}
 		int numberOfOccurrences = ui.askForMinimumNumberOfOccurrences();
-		categories = Trainer.train(categories, numberOfOccurrences);
+		int maxOccurrences = ui.askForMaximumNumberOfOccurrences();
+		categories = Trainer.train(categories, numberOfOccurrences, maxOccurrences);
 
 		
 		while(true)
@@ -67,7 +67,7 @@ public class Main {
 							if(update != null){
 								update.addDoc(1);
 								update.mergeMaps(words);
-								Trainer.train(categories, numberOfOccurrences);
+								Trainer.train(categories, numberOfOccurrences,maxOccurrences);
 							}
 						}
 					}
