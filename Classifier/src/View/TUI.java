@@ -2,7 +2,10 @@ package View;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
+
+import Model.Category;
 
 /**
  * Created by Roy on 9-12-2015.
@@ -40,18 +43,34 @@ public class TUI implements UI {
     }
     
     //ask the user for the correct category
-    public String askCorrectClass(String category)
+    public String askCorrectClass(String category, List<Category> categories)
     {
         System.out.println("Is this the correct class? (y/n)");
         Scanner user_input = new Scanner( System.in );
         String correct = user_input.nextLine();
         String correctClass = category;
-
+        
         if(!correct.equals("y") && !correct.equals("yes"))
         {
             //Class is not correct
-            System.out.println("What is the correct class?");
-            correctClass = user_input.nextLine();
+            boolean done = false;
+            while(!done){
+            	System.out.println("What is the correct class?");
+                correctClass = user_input.nextLine();
+                boolean contains = false;
+                for(Category i: categories){
+                	if(i.getName().equals(correctClass)){
+                		contains = true;
+                		break;
+                	}
+                }
+                if(categories.contains(correctClass)){
+                	done = true;
+                } else {
+                	System.out.println(correctClass + " is not a category");
+                }
+            }
+        	
         }
 
         return correctClass;

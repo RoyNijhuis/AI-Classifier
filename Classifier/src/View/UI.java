@@ -1,5 +1,9 @@
 package View;
 
+import java.util.List;
+
+import Model.Category;
+
 /**
  * Created by Roy on 9-12-2015.
  */
@@ -11,7 +15,7 @@ public interface UI {
     public String[] askForWordsOnly();
     public String[] askClasses();
     public void outputDeterminedCategory(String document, String category);
-    public String askCorrectClass(String category);
+    public String askCorrectClass(String category, List<Category> categories);
     public boolean askLearn();
     public void show();
 }

@@ -55,7 +55,7 @@ public class Main {
 					
 					ui.outputDeterminedCategory(files[i].getName(), result.getName());
 					if(learn){
-						String cate = ui.askCorrectClass(result.getName());
+						String cate = ui.askCorrectClass(result.getName(), categories);
 						Category update= null;
 						if(cate!=null){
 							for(Category c: categories){
