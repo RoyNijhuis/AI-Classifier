@@ -64,7 +64,7 @@ public class TUI implements UI {
                 		break;
                 	}
                 }
-                if(categories.contains(correctClass)){
+                if(contains){
                 	done = true;
                 } else {
                 	System.out.println(correctClass + " is not a category");

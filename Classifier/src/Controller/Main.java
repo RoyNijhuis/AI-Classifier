@@ -77,11 +77,29 @@ public class Main {
 				try {
 					words = Reader.readFromFile(filePath);
 				} catch (IOException e) {
-					e.printStackTrace();
+					
 				}
 
 				Category result = Applier.classify(categories, words);
-				System.out.println("This file is probably of class: " + result.getName());
+				
+				ui.outputDeterminedCategory(folder.getName(), result.getName());
+				if(learn){
+					String cate = ui.askCorrectClass(result.getName(), categories);
+					Category update= null;
+					if(cate!=null){
+						for(Category c: categories){
+							if(c.getName().equals(cate)){
+								update = c;
+								
+							}
+						}
+						if(update != null){
+							update.addDoc(1);
+							update.mergeMaps(words);
+							Trainer.train(categories, numberOfOccurrences,maxOccurrences);
+						}
+					}
+				}
 	        }
 		}
 		
