@@ -11,31 +11,43 @@ import java.util.*;
 public class Main {
 	
 	public static void main(String[] args) {
+		//create user interface
 		UI ui = new TUI();
 		ui.show();
+		
+		//list all categories
 		String categorieNames[] = ui.askClasses();
 		List<Category> categories = new ArrayList<>();
 		
+		//for every categorie get train documents
 		for(int i=0; i<categorieNames.length; i++)
 		{
 			Category cat = new Category(categorieNames[i]);
+			
+			//get the training folder
 			String trainPath = ui.askForTrainFolder(categorieNames[i]);
 			try {
+				//read all the words from the folder and count the documents
 				cat.setWords(Reader.readFromFolder(trainPath));
 				cat.setDocs(Reader.readAmountFiles(trainPath));
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				
 				i-=1;
 			}
 			categories.add(cat);
 		}
+		
+		//min and max number of occurrences for a word
 		int numberOfOccurrences = ui.askForMinimumNumberOfOccurrences();
 		int maxOccurrences = ui.askForMaximumNumberOfOccurrences();
+		
+		//train the categories and create the probabilities
 		categories = Trainer.train(categories, numberOfOccurrences, maxOccurrences);
 
-		
+		//while loop to classify documents
 		while(true)
 		{
+			
 			String filePath = ui.askForApplyFile();
 			File folder = new File(filePath);
 			Boolean learn = ui.askLearn();
