@@ -53,7 +53,7 @@ public class Main {
 					System.out.println(f.getName()+" is probably of class: " + result.getName());
 					
 					String cate = ui.askForApplyFile();
-					Category update;
+					Category update= null;
 					if(cate!=null){
 						for(Category c: categories){
 							if(c.getName() == cate){
