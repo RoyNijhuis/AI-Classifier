@@ -100,6 +100,8 @@ public class TUI implements UI {
         return path;
     }
 
+    //Asks the minimum number of times a word should occur in the training sets, before it should be added to the dicionary.
+    //Returns the input of the user
     public int askForMinimumNumberOfOccurrences()
     {
         int number = 1;
@@ -119,7 +121,9 @@ public class TUI implements UI {
 
         return number;
     }
-    
+
+    //Asks the maximum number of times a word should occur in the training sets.
+    //Returns the input of the user
     public int askForMaximumNumberOfOccurrences()
     {
         int number = -1;
@@ -144,18 +148,7 @@ public class TUI implements UI {
         return number;
     }
 
-    public String[] askForWordsOnly()
-    {
-        System.out.println("If you only want to use certain words for classification, please enter them seperated by a comma(,).");
-        System.out.println("If you want to use all words in the training set leave the line empty.");
-        Scanner user_input = new Scanner(System.in);
-        String input = user_input.nextLine();
-
-        String[] result = input.split(",");
-
-        return result;
-    }
-
+    //Asks the user which classes exist, the user should seperate the name of each class with a comma(,)
     public String[] askClasses()
     {
         System.out.println("Which classes are there in the documents? Seperate each class with a comma(,).");
@@ -167,7 +160,7 @@ public class TUI implements UI {
         return result;
     }
 
-	
+	//Asks whether the user wants an interactive learner or only a classifier that does not update its dictionary during the session.
 	public boolean askLearn() {
 		boolean result = false;
         boolean done = false;
@@ -189,9 +182,4 @@ public class TUI implements UI {
 
 		return result;
 	}
-
-    @Override
-    public void show() {
-
-    }
 }

@@ -12,10 +12,8 @@ public interface UI {
     public String askForApplyFile();
     public int askForMinimumNumberOfOccurrences();
     public int askForMaximumNumberOfOccurrences();
-    public String[] askForWordsOnly();
     public String[] askClasses();
     public void outputDeterminedCategory(String document, String category);
     public String askCorrectClass(String category, List<Category> categories);
     public boolean askLearn();
-    public void show();
 }
