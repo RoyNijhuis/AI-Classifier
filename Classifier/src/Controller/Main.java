@@ -1,25 +1,17 @@
 package Controller;
 
 import Model.Category;
-import View.GUI;
 import View.TUI;
 import View.UI;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-public class Main extends Application{
-
-	private static Stage window;
-
-	public void startInteractiveLearner() {
-		UI ui = new GUI();
+public class Main {
+	
+	public static void main() {
+		UI ui = new TUI();
 		ui.show();
 		String categorieNames[] = ui.askClasses();
 		List<Category> categories = new ArrayList<>();
@@ -92,26 +84,5 @@ public class Main extends Application{
 	        }
 		}
 		
-	}
-
-	public static void showGUI()
-	{
-		window.show();
-	}
-
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		window = primaryStage;
-		window.setTitle("thenewboston - JavaFX");
-		Button button = new Button("Click me");
-
-		StackPane layout = new StackPane();
-		layout.getChildren().add(button);
-		Scene scene = new Scene(layout, 300, 250);
-
-		window.setScene(scene);
-		window.hide();
-
-		startInteractiveLearner();
 	}
 }
