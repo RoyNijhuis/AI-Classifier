@@ -12,4 +12,5 @@ public interface UI {
     public void outputDeterminedCategory(String document, String category);
     public String askCorrectClass(String category);
     public boolean askLearn();
+    public void show();
 }

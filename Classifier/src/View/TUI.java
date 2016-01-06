@@ -146,4 +146,9 @@ public class TUI implements UI {
 
 		return result;
 	}
+
+    @Override
+    public void show() {
+
+    }
 }
