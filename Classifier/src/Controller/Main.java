@@ -41,18 +41,18 @@ public class Main {
 	        if(folder.isDirectory())
 	        {
 	            File[] files = folder.listFiles();
-	            for(File f:files){
-	            	filePath = f.getAbsolutePath();
+	            for(int i=0; i<files.length; i++){
+	            	filePath = files[i].getAbsolutePath();
 	            	Map<String, Integer> words = null;
 					try {
 						words = Reader.readFromFile(filePath);
 					} catch (IOException e) {
-						e.printStackTrace();
+						i-=1;
 					}
 
 					Category result = Applier.classify(categories, words);
 					
-					ui.outputDeterminedCategory(f.getName(), result.getName());
+					ui.outputDeterminedCategory(files[i].getName(), result.getName());
 					if(learn){
 						String cate = ui.askCorrectClass(result.getName());
 						Category update= null;
